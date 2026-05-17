@@ -3,16 +3,17 @@ package com.socialMedia.media.models;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+import java.util.HashSet;
+import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SocialProfile {
+@Entity
+public class SocialGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "socialProfile")
-    @JoinColumn(name = "social_user")
-    private SocialUser user;
+    @ManyToMany(mappedBy = "groups")
+    private Set<SocialUser> socialUsers=new HashSet<>();
 }
